@@ -1,5 +1,10 @@
 # signed_xmlrpc - Send signed XML RPC Requests
 
+[![PyPI version](https://img.shields.io/pypi/v/ftrace.svg?logo=pypi&logoColor=FFE873)](https://pypi.org/project/ftrace/)
+[![Supported Python versions](https://img.shields.io/pypi/pyversions/ftrace.svg?logo=python&logoColor=FFE873)](https://pypi.org/project/ftrace/)
+[![PyPI downloads](https://img.shields.io/pypi/dm/ftrace.svg)](https://pypistats.org/packages/ftrace)
+[![GitHub](https://img.shields.io/github/license/manfred-kaiser/python-ftrace.svg)](LICENSE)
+
 `signed_xmlrpc` is a python library send signed xml rpc requests.
 
 This library can be used in cyber defense exercises when communication with a compromised server
