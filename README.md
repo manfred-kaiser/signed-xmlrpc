@@ -1,5 +1,6 @@
 # signed_xmlrpc - Send signed XML RPC Requests
 
+[![Github version](https://img.shields.io/github/v/release/manfred-kaiser/signed-xmlrpc?label=github&logo=github)](https://github.com/manfred-kaiser/signed-xmlrpc/releases)
 [![PyPI version](https://img.shields.io/pypi/v/signed-xmlrpc.svg?logo=pypi&logoColor=FFE873)](https://pypi.org/project/signed-xmlrpc/)
 [![Supported Python versions](https://img.shields.io/pypi/pyversions/signed-xmlrpc.svg?logo=python&logoColor=FFE873)](https://pypi.org/project/signed-xmlrpc/)
 [![PyPI downloads](https://img.shields.io/pypi/dm/signed-xmlrpc.svg)](https://pypistats.org/packages/signed-xmlrpc)
