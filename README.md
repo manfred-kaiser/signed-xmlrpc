@@ -1,5 +1,9 @@
 # signed_xmlrpc - Send signed XML RPC Requests
 
+[![PyPI version](https://img.shields.io/pypi/v/signed-xmlrpc.svg?logo=pypi&logoColor=FFE873)](https://pypi.org/project/signed-xmlrpc/)
+[![Supported Python versions](https://img.shields.io/pypi/pyversions/signed-xmlrpc.svg?logo=python&logoColor=FFE873)](https://pypi.org/project/signed-xmlrpc/)
+[![PyPI downloads](https://img.shields.io/pypi/dm/signed-xmlrpc.svg)](https://pypistats.org/packages/signed-xmlrpc)
+[![GitHub](https://img.shields.io/github/license/manfred-kaiser/signed-xmlrpc.svg)](LICENSE)
 
 `signed_xmlrpc` is a python library send signed xml rpc requests.
 
