@@ -43,7 +43,7 @@ import base64
 from ecdsa import VerifyingKey
 from signed_xmlrpc.server import SignedXMLRPCServer, SignedRequestHandler
 
-public_key = b'dmTk8IGtxQBC4lPuk9tXUIJqbiz4G01qLEzmt5Fmh9AkpqOWwcSyyVeDczrhGWe7'
+public_key = b'qNXpRhGrdva935NR1MwNkN/aBKSABGp6uMRAoSprFo8Fj4mT6aWw/PRl3Uhe+vet'
 
 # if the signature is not required, the standard python xmlrpc library can be used as client
 SignedRequestHandler.REQUIRE_SIGNATURE = True
@@ -62,7 +62,7 @@ from ecdsa import SigningKey
 from signed_xmlrpc.client import SigningTransport
 import xmlrpc
 
-private_key = b'BxbHQpNKpwKmYOs1RDSMg1vkIYsTTP3o'
+private_key = b'eTYnHIdD5AIa0CxvJLbq22mI1TztdkeS'
 
 server = xmlrpc.client.ServerProxy(
     'http://127.0.0.1:8081',
