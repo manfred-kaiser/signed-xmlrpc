@@ -10,6 +10,7 @@ from xmlrpc.server import SimpleXMLRPCServer
 
 from signed_xmlrpc.exceptions import MissingPrivateKey
 
+LAST_RECEIVED_TIMESTAMP = None
 
 class SignedRequestHandler(SimpleXMLRPCRequestHandler):
 
@@ -56,6 +57,15 @@ class SignedRequestHandler(SimpleXMLRPCRequestHandler):
         conn_host = "{}:{}".format(self.connection.getsockname()[0], self.connection.getsockname()[1])
         xml_request = ET.fromstring(data)
         connection_tag = xml_request.find('./connection')
+
+        # Prohibit reply attacks by checking the connection tag for the timestamp
+        # The timestamp must be greater than the last received timestamp
+        global LAST_RECEIVED_TIMESTAMP
+        timestamp = connection_tag.attrib["timestamp"]
+        if  not LAST_RECEIVED_TIMESTAMP or timestamp > LAST_RECEIVED_TIMESTAMP:
+            LAST_RECEIVED_TIMESTAMP = timestamp
+        else:
+            return self.report_403()
 
         if conn_host != connection_tag.attrib['dstip']:
             return self.report_403()
