@@ -10,11 +10,11 @@ from xmlrpc.server import SimpleXMLRPCServer
 
 from signed_xmlrpc.exceptions import MissingPrivateKey
 
-LAST_RECEIVED_TIMESTAMP = None
 
 class SignedRequestHandler(SimpleXMLRPCRequestHandler):
 
     REQUIRE_SIGNATURE = True
+    LAST_RECEIVED_TIMESTAMP = 0
 
     def verify(self, data, signature):
         """
@@ -60,10 +60,10 @@ class SignedRequestHandler(SimpleXMLRPCRequestHandler):
 
         # Prohibit reply attacks by checking the connection tag for the timestamp
         # The timestamp must be greater than the last received timestamp
-        global LAST_RECEIVED_TIMESTAMP
-        timestamp = connection_tag.attrib["timestamp"]
-        if  not LAST_RECEIVED_TIMESTAMP or timestamp > LAST_RECEIVED_TIMESTAMP:
-            LAST_RECEIVED_TIMESTAMP = timestamp
+        timestamp = int(connection_tag.attrib["timestamp"])
+
+        if timestamp > self.__class__.LAST_RECEIVED_TIMESTAMP:
+            self.__class__.LAST_RECEIVED_TIMESTAMP = timestamp
         else:
             return self.report_403()
 
