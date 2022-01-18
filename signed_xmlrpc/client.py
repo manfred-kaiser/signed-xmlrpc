@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import base64
+import time
 from xml.dom.minidom import parseString, Document
 from xmlrpc.client import Transport
 from ecdsa import SigningKey, VerifyingKey
@@ -54,6 +55,9 @@ class SigningTransport(Transport):
         if self.src_ip:
             connectionelement.setAttribute("srcip", self.src_ip)
         connectionelement.setAttribute("dstip", host)
+
+        # timestamp in Millisekunden
+        connectionelement.setAttribute("timestamp", str(int(time.time() * 1000)))
 
         ps = doc.getElementsByTagName('methodCall')[0]
         ps.insertBefore(connectionelement, ps.firstChild)

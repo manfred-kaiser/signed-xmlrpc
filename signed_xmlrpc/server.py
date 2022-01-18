@@ -14,6 +14,7 @@ from signed_xmlrpc.exceptions import MissingPrivateKey
 class SignedRequestHandler(SimpleXMLRPCRequestHandler):
 
     REQUIRE_SIGNATURE = True
+    LAST_RECEIVED_TIMESTAMP = 0
 
     def verify(self, data, signature):
         """
@@ -56,6 +57,15 @@ class SignedRequestHandler(SimpleXMLRPCRequestHandler):
         conn_host = "{}:{}".format(self.connection.getsockname()[0], self.connection.getsockname()[1])
         xml_request = ET.fromstring(data)
         connection_tag = xml_request.find('./connection')
+
+        # Prohibit reply attacks by checking the connection tag for the timestamp
+        # The timestamp must be greater than the last received timestamp
+        timestamp = int(connection_tag.attrib["timestamp"])
+
+        if timestamp > self.__class__.LAST_RECEIVED_TIMESTAMP:
+            self.__class__.LAST_RECEIVED_TIMESTAMP = timestamp
+        else:
+            return self.report_403()
 
         if conn_host != connection_tag.attrib['dstip']:
             return self.report_403()
